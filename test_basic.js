@@ -61,3 +61,14 @@ cat.listener.push(Mouse.createNew());
 
 console.log("***********now cat is crying************");
 cat.crying();
+
+// get function name.
+function func1() {
+
+}
+
+function func2(func) {
+    console.log(func.name);
+}
+
+func2(func1);
