@@ -4,6 +4,8 @@ var url = require('url');
 
 
 // Create a server
+//test url: http://127.0.0.1:8081/index.html
+//test url: http://127.0.0.1:8081/index2.html
 http.createServer(function(request, response) {
     // Parse the request containing file name
     var pathname = url.parse(request.url).pathname;
