@@ -1,0 +1,11 @@
+{
+  "name": "npm-demo-pkg",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Qiqiang Giam",
+  "license": "BSD-2-Clause"
+}
