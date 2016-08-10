@@ -8,3 +8,6 @@ This project is from video tutorial [MEAN Stack RESTful API Tutorial](https://ww
 - [(4/5) RESTful API, GET and POST Data](https://www.youtube.com/watch?v=iFsYJG3fGro&index=4&list=PLX2HoWE32I8Nkzw2TqcifObuhgJZz8a0U)
 - [(5/5) RESTful API Tutorial, DELETE and PUT Data](https://www.youtube.com/watch?v=06_SIzYXgqQ&index=5&list=PLX2HoWE32I8Nkzw2TqcifObuhgJZz8a0U)
 
+``` javascript
+[{name: 'Tracy', email: 'Tracy@email.com', number: '(555) 555-5555'},{name: 'Tucker', email: 'Tucker@email.com', number: '(777) 777-7777'},{name: 'Tom', email: 'tom@email.com', number: '(444) 444-4444'}]
+````
