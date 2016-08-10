@@ -2,13 +2,15 @@ var express = require('express');
 var app = express();
 
 var mongojs = require("mongojs");
+var mongodb = require('mongodb');
 var db = mongojs("contactlist", ['contactlist']);
 
 var bodyParser = require('body-parser');
-// app.get('/', function(req, res) {
-//     res.send('Hello world from sever.js');
-// })
-//
+var assert = require('assert')
+    // app.get('/', function(req, res) {
+    //     res.send('Hello world from sever.js');
+    // })
+    //
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -17,7 +19,7 @@ app.get("/contactlist", function(req, res) {
     console.log("this is a get request");
 
     db.contactlist.find(function(err, docs) {
-        console.log(docs);
+        // console.log(docs);
         res.json(docs);
     })
 });
@@ -29,5 +31,22 @@ app.post("/contactlist", function(req, res) {
         res.json(docs);
     });
 });
+
+//removecontact, you should use app.delete.
+// app.post("/removecontact", function(req, res) {
+//     console.log(req.body.id);
+//     db.contactlist.remove({ "_id": new mongodb.ObjectID(req.body.id) }, function(err, docs) {
+//         assert.equal(err, null);
+//         console.log("remove successfully");
+//         res.json(docs);
+//     });
+// });
+app.delete("/removecontact/:id", function(req, res) {
+    console.log(req.params.id);
+    db.contactlist.remove({ _id: mongojs.ObjectId(req.params.id) }, function(err, docs) {
+        res.json(docs);
+    });
+});
+
 app.listen(3000);
 console.log("Server is running on port 3000");
