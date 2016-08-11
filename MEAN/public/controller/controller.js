@@ -45,5 +45,21 @@ myApp.controller('AppCtrl', ['$scope', '$http',
                 refresh();
             });
         }
+
+        //edit one item.
+        $scope.edit = function(id) {
+            console.log("edit id is " + id);
+            $http.get("/contactlist/" + id).success(function(response) {
+                console.log(response);
+                $scope.contact = response;
+            });
+        }
+
+        $scope.update = function(id) {
+            console.log("update id is " + id);
+            $http.put("/updatecontact/" + id).success(function(response) {
+
+            });
+        }
     }
 ]);

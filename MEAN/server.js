@@ -24,6 +24,16 @@ app.get("/contactlist", function(req, res) {
     })
 });
 
+// get one item from id.
+app.get("/contactlist/:id", function(req, res) {
+    var id = req.params.id;
+    console.log("requset id is " + id);
+
+    db.contactlist.findOne({ _id: mongojs.ObjectId(req.params.id) }, function(err, docs) {
+        res.json(docs);
+    })
+});
+
 app.post("/contactlist", function(req, res) {
     console.log(req.body);
     db.contactlist.insert(req.body, function(err, docs) {
