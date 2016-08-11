@@ -42,6 +42,21 @@ app.post("/contactlist", function(req, res) {
     });
 });
 
+
+app.put("/contactlist/:id", function(req, res) {
+    console.log("###############this is put method##########################");
+    console.log(req.params.id);
+    console.log(req.body);
+    db.contactlist.findAndModify({
+        query: { _id: mongojs.ObjectId(req.params.id) },
+        update: { $set: { name: req.body.name, email: req.body.email, number: req.body.number } },
+        new: true
+    }, function(err, docs) {
+        console.log("update successfully");
+        res.json(docs);
+    });
+});
+
 //removecontact, you should use app.delete.
 // app.post("/removecontact", function(req, res) {
 //     console.log(req.body.id);

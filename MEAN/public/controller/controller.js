@@ -55,10 +55,10 @@ myApp.controller('AppCtrl', ['$scope', '$http',
             });
         }
 
-        $scope.update = function(id) {
-            console.log("update id is " + id);
-            $http.put("/updatecontact/" + id).success(function(response) {
-
+        $scope.update = function() {
+            console.log("update id is " + $scope.contact._id);
+            $http.put("/contactlist/" + $scope.contact._id, $scope.contact).success(function(response) {
+                refresh();
             });
         }
     }
