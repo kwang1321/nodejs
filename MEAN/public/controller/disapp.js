@@ -2,7 +2,7 @@ var app = angular.module('plunker', ['nvd3']);
 
 app.controller('MainCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
     $scope.getChargeData = function() {
-        $http.get("/chargedata").success(function(response) {
+        $http.get("/dischargedata").success(function(response) {
             // console.log(response);
             $scope.processChargeData(response);
         });
@@ -38,7 +38,7 @@ app.controller('MainCtrl', ['$scope', '$http', '$interval', function($scope, $ht
         for (var i = arrayLength - 1; i >= 0; i--) {
             var row = [];
             var sumRow = [];
-            var chCur = rawData[i].ch_cur;
+            var chCur = rawData[i].dis_cur;
             var current = 0;
             if (chCur >= 100) {
                 current = 1000 * chCur / 4095;
@@ -52,17 +52,17 @@ app.controller('MainCtrl', ['$scope', '$http', '$interval', function($scope, $ht
             sumRow.push(Number(sum * 3).toFixed(2));
             //Do something
             cur.push(row);
-            sumArr.push(sumRow);
+            sumArr.splice(0, 0, sumRow);
         }
-        $scope.maxCurrent = sumArr[arrayLength - 1][1];
+        $scope.maxCurrent = sumArr[0][1];
         $scope.tmp = rawData[arrayLength - 1].temperature + "℃";
         var now_curr = cur[arrayLength - 1][1];
-        if(now_curr < 10){
+        if (now_curr < 10) {
             $scope.chargeClass = 'label-default';
-            $scope.charging = 'Not Charging';
+            $scope.charging = 'Not In Use';
         } else {
             $scope.chargeClass = 'label-success';
-            $scope.charging = 'Charging';
+            $scope.charging = 'DisCharging';
         }
 
         $scope.pushChargeData(cur, sumArr);
@@ -77,7 +77,7 @@ app.controller('MainCtrl', ['$scope', '$http', '$interval', function($scope, $ht
             "bar": true,
             "values": currentSum
         }, {
-            "key": "Charge Current",
+            "key": "DisCharge Current",
             "values": currents
         }].map(function(series) {
             series.values = series.values.map(function(d) {
@@ -137,7 +137,7 @@ app.controller('MainCtrl', ['$scope', '$http', '$interval', function($scope, $ht
                     axisLabelDistance: 12
                 },
                 y2Axis: {
-                    axisLabel: 'Charge Current (mA)',
+                    axisLabel: 'DisCharge Current (mA)',
                     tickFormat: function(d) {
                         return d3.format(',.2f')(d)
                     }

@@ -49,7 +49,7 @@ for (var i = arrayLength - 1; i >= 0; i--) {
     var sumRow = [];
     var chCur = rawData[i].ch_cur;
     var current = 0;
-    if(chCur >= 200)
+    if (chCur >= 200)
         current = 1000 * chCur / 4095;
     sum += current;
     row.push(Number(current).toFixed(2));
@@ -62,3 +62,10 @@ for (var i = arrayLength - 1; i >= 0; i--) {
 }
 console.log(cur);
 console.log(sumArr);
+
+
+var arr = ['a', 'bv'];
+arr.splice(0, 0, "bb");
+arr.splice(0, 0, "cc");
+console.log(arr);
+

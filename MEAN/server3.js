@@ -23,22 +23,16 @@ app.use(bodyParser.json());
 
 // get one item from id.
 app.get("/chargedata", function(req, res) {
-    // connection.connect();
-
-    connection.query('SELECT * FROM bms.batteryData where battery_status=1 and ch_cur > 200 order by timestp desc limit 100', function(err, rows, fields) {
-        if (!err){
+    // var sql = 'SELECT * FROM bms.batteryData where battery_status=1 and ch_cur >= 100 order by timestp desc limit 100';
+    var sql = 'SELECT * FROM bms.batteryData where battery_status=1 order by timestp desc limit 100';
+    connection.query(sql, function(err, rows, fields) {
+        if (!err) {
             console.log('The solution is: ', rows);
-            // console.log('The solution is: ', fields);
-            // res.end('<html><body><h1>Hello, World!</h1></body></html>');
             res.json(rows);
-        }
-        else
+        } else {
             console.log('Error while performing Query.');
-
+        }
     });
-
-    // connection.end();
-
 });
 
 // get one item from id.
@@ -46,15 +40,11 @@ app.get("/dischargedata", function(req, res) {
     // connection.connect();
 
     connection.query('SELECT * FROM bms.batteryData where battery_status=2 order by timestp desc limit 100', function(err, rows, fields) {
-        if (!err){
+        if (!err) {
             console.log('The solution is: ', rows);
-            // console.log('The solution is: ', fields);
-            // res.end('<html><body><h1>Hello, World!</h1></body></html>');
             res.json(rows);
-        }
-        else
+        } else
             console.log('Error while performing Query.');
-
     });
 
     // connection.end();
