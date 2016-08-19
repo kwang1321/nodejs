@@ -100,7 +100,7 @@ app.controller('MainCtrl', ['$scope', '$http', '$interval', function($scope, $ht
                     left: 75
                 },
                 lines: {
-                    forceY: [50, 110]
+                    forceY: [50, 300]
                 },
                 bars: {
                     forceY: [0, Number($scope.maxCurrent) + 200]
