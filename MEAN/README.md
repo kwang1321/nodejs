@@ -12,4 +12,8 @@ This project is from video tutorial [MEAN Stack RESTful API Tutorial](https://ww
 [{name: 'Tracy', email: 'Tracy@email.com', number: '(555) 555-5555'},
 {name: 'Tucker', email: 'Tucker@email.com', number: '(777) 777-7777'},
 {name: 'Tom', email: 'tom@email.com', number: '(444) 444-4444'}]
-````
+```
+
+**We are testing some interview questions about angularJs**
+- [AngularJS Filters](https://www.w3schools.com/angular/angular_filters.asp)
+- [Everything about custom filters in AngularJS](https://toddmotto.com/everything-about-custom-filters-in-angular-js/)
