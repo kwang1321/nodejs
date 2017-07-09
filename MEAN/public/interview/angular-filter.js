@@ -20,7 +20,7 @@ myApp.filter('startsWithA', function() {
         var filtered = [];
         for (var i = 0; i < items.length; i++) {
             var item = items[i];
-            if (/[M,J]/i.test(item.substring(0,1))) {
+            if (/[M,J]/i.test(item.substring(0, 1))) {
                 filtered.push(item);
             }
         }

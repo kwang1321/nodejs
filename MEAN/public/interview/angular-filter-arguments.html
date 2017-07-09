@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <title>angular-filter-arguments</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-controller="PersonCtrl">
+        <input type="text" ng-model="letter" placeholder="Enter a letter to filter">
+        <ul>
+            <li ng-repeat="friend in friends | startsWithLetter:letter">
+                {{ friend }}
+            </li>
+        </ul>
+        <!-- testing for controller filter -->
+        <ul>
+            <li ng-repeat="friend in friends | filter : startsWithW">
+                {{ friend }}
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="angular-filter-arguments.js"></script>
+
+</html>
