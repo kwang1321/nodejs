@@ -1,7 +1,7 @@
 # AngularJs Unit Test
 [Start Karma](https://github.com/jilianggqq/nodejs/tree/master/ns-jasmine-testing#start-karma)
 
-[Reference](https://github.com/jilianggqq/nodejs/tree/master/ns-jasmine-testing#Reference)
+[Reference](https://github.com/jilianggqq/nodejs/tree/master/ns-jasmine-testing#reference)
 
 ## start karma
 ``` shell
