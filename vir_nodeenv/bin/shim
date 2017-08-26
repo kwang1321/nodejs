@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+export NODE_PATH=/home/gqq/MyProjects/nodejs/vir_nodeenv/lib/node_modules
+export NPM_CONFIG_PREFIX=/home/gqq/MyProjects/nodejs/vir_nodeenv
+export npm_config_prefix=/home/gqq/MyProjects/nodejs/vir_nodeenv
+exec vir_nodeenv/bin/node "$@"
