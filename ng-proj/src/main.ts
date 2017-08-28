@@ -8,4 +8,5 @@ if (environment.production) {
   enableProdMode();
 }
 
+// make the AppModule as the start up module.
 platformBrowserDynamic().bootstrapModule(AppModule);
