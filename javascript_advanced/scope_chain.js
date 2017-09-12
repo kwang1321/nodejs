@@ -11,6 +11,7 @@ function goo() {
     // here will call the foo defined inside but not outside.
     foo();
 }
+
 function foo() {
     console.log(myVar);
 }

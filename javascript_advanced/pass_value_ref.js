@@ -19,6 +19,7 @@ console.log(b);
 function change_obj(obj) {
     // body...
     obj.change = true;
+    obj.add = "add";
     // we can not change what obj point to.
     obj = {"abc" : "abc"};
 }

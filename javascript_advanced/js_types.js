@@ -20,3 +20,13 @@ var b = null;
 console.log(b);
 // we can say, null and undefined are all values. just the same as one is a value and 2 is a value.
 console.log(null == undefined)
+
+console.log(Object.prototype.toString.call(undefined));
+console.log(Object.prototype.toString.call(null));
+console.log(Object.prototype.toString.call(NaN));
+console.log(Object.prototype.toString.call(3));
+console.log(Object.prototype.toString.call('a'));
+console.log(Object.prototype.toString.call(false));
+console.log(Object.prototype.toString.call("false"));
+console.log(Object.prototype.toString.call({}));
+console.log(Object.prototype.toString.call(function(){}));

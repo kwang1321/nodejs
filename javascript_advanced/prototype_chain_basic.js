@@ -9,6 +9,7 @@ var animal = {
 // asim.__proto__ = animal;
 
 // usually, we are not using above way but using Object.create();
+// asim,__proto__ === animal
 var asim = Object.create(animal, {food : {value : "Mongo"}});
 
 console.log(asim.food); // be very concern about that. The second parameter is not a json but a 
