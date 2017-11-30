@@ -8,14 +8,22 @@ function sayHello(name) {
     };
 }
 
+// a closure is a function, along with all variables or functions that were in-scope at the time that the closure was created. 
+// In JavaScript, a closure is implemented as an “inner function”; 
+// i.e., a function defined within the body of another function. 
+// An important feature of closures is that an inner function still has access to the outer function’s variables.
+
 var sayAsim = sayHello("asim");
+// Hello asim
 sayAsim();
 
 // 2. advanced technology.
 var foo = [];
 for (var i=0; i<10; i++) {
     // closure is not a copy of i, it is just the actual value of I.
-    foo[i] = function() {return i};
+    foo[i] = function() {
+        return i;
+    };
 }
 console.log(foo[0]());
 console.log(foo[1]());
@@ -49,3 +57,16 @@ for (var i=0; i<10; i++) {
 console.log(foo3[0]());
 console.log(foo3[1]());
 console.log(foo3[2]());
+
+// A closure is an inner function that has access to the variables in the outer (enclosing) function’s scope chain. 
+// The closure has access to variables in three scopes; 
+// specifically: (1) variable in its own scope, (2) variables in the enclosing function’s scope, and (3) global variables.
+var gloVar = "Hello,";
+var closTest = (function(arg1) {
+    var clos = function(arg2) {
+        console.log(gloVar + arg1 +  ","+ arg2);
+    };
+    return clos;
+})("Jack");
+
+closTest("Gary");

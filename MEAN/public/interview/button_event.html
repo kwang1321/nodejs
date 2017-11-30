@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <h1>Interview test</h1>
+</body>
+
+<script type="text/javascript">
+    // https://www.toptal.com/javascript/interview-questions
+for (var i = 0; i < 5; i++) {
+    var btn = document.createElement('button');
+    btn.appendChild(document.createTextNode('button ' + i));
+    // btn.addEventListener('click', function() {
+    //     // i points to in the outer scope.
+    //     console.log(i);
+    // });
+    (function(j){
+        btn.addEventListener('click', function(){ console.log(j)});
+    })(i);
+    document.body.appendChild(btn);
+}
+</script>
+</html>
