@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Basic Event</title>
+    <style type="text/css">
+    /*button tag with alert class. Don't use space between them.*/
+
+    button.alert {
+        color: blue;
+    }
+
+    div {
+        background-color: green;
+        padding: 20px;
+    }
+
+    input {
+        /*padding: 10px;*/
+        padding-top: 10px;
+        /*margin: 20px;*/
+    }
+
+    .f_family {
+        font-family: "Times New Roman", "Georgia", "Serif";
+        font-size: 18px;
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        // document.ready.
+        $('button').on('click', function(e) {
+            console.log("A button with the alert class was clicked!");
+        });
+
+        $('<button class="alert">Alert Button</button>').appendTo($('body'));
+
+        $('input').on('click change', function(event) {
+            // event.preventDefault();
+            event.stopPropagation();
+            /* Act on the event */
+            console.log("input is clicked or changed.");
+        });
+        // Setting Up Multiple Event Responses
+        $('div').on('click', function(event) {
+            console.log("p is clicked!");
+        }).on('mouseover',function(event) {
+            console.log("p is mouseovered!");
+
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <button class="alert f_family">Alert Button</button>
+    <button class="alert">Alert Button</button>
+    <button class="alert">Alert Button</button>
+    <button class="alert f_family">Alert Button</button>
+    <div>
+        <label for="txtInfo">info:</label>
+        <input type="text" id="txtInfo">
+    </div>
+</body>
+
+</html>

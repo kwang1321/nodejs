@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Untitled</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <style type="text/css">
+        button {
+            margin: 20px;
+        }
+    </style>
+    <link rel="author" href="humans.txt">
+</head>
+
+<body>
+    <button>Change color</button>
+    <script type="text/javascript">
+    function random(number) {
+        return Math.floor(Math.random() * (number + 1));
+    }
+
+    var btn = document.querySelector('button');
+
+    // The onclick property is the event handler property being used in this situation. 
+    // It is essentially a property like any other available on the button 
+    //(e.g. btn.textContent, or btn.style), but it is a special type —
+    // when you set it to be equal to some code, that code will be run when the event fires on the button.
+    function change_color() {
+        // body...
+
+        var ranCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        document.body.style.background = ranCol;
+    }
+
+    // btn.ondbclick = change_color;
+    // btn.onclick = change_color;
+    btn.addEventListener('click', function(e) {
+        change_color();
+    });
+    btn.addEventListener('click', function(e) {
+        // true
+        console.log(e.target === btn);
+        console.log(this.innerHTML);
+    });
+    </script>
+</body>
+
+</html>

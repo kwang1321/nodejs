@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>each demo</title>
+    <style>
+    div {
+        color: red;
+        text-align: center;
+        cursor: pointer;
+        font-weight: bolder;
+        width: 300px;
+    }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    <div>Click here</div>
+    <div>to iterate through</div>
+    <div>these divs.</div>
+    <script type="text/javascript">
+      $("body").click(function(event) {
+        /* Act on the event */
+        $("div").each(function(index, el) {
+          console.log(this.style.color);
+          if (this.style.color !== 'blue') {
+            this.style.color = 'blue';
+          } else {
+            this.style.color = '';
+          }
+        });
+      });
+    </script>
+</body>
+
+</html>

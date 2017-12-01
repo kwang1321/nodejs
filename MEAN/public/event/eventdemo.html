@@ -2,53 +2,63 @@
 <html>
 
 <head>
-<style type="text/css">
+    <style type="text/css">
     .forth {
         padding: 5%;
     }
+
     .third {
         padding: 5%;
         background-color: yellow;
     }
+
     .second {
         padding: 10%;
         background-color: green;
-
     }
+
     .first {
         padding: 20%;
         background-color: red;
     }
+
     .body {
         background-color: blue;
     }
+
     .item {
         border-width: 3px;
     }
-</style>
+    </style>
 </head>
 
 <body class="body item">
-<div class="first item">
-    <div class="second item">
-        <div class="third item">
-            <!-- <button class="forth item">Click Me!</button> -->
-            <input type="checkbox" class="forth item"/> Hello <br>
+    <div class="first item">
+        <div class="second item">
+            <div class="third item">
+                <!-- <button class="forth item">Click Me!</button> -->
+                <input type="checkbox" class="forth item" /> Hello
+                <br>
+            </div>
         </div>
     </div>
-</div>
-
-<!-- java script -->
-<script type="text/javascript">
+    <!-- java script -->
+    <script type="text/javascript">
     var items = document.getElementsByClassName("item");
-    for(var i=0; i < items.length; i++) {
+    for (var i = 0; i < items.length; i++) {
         // console.log(items[i]);
         // if the third parameter is false.
         // this means it is the bubling phase.
         // if it is true, it is capturing phase.
-        (function (y){
-            items[y].addEventListener("click", function (event) {
+        (function(y) {
+            console.log("this is the " + y + " layer");
+            // 1. we don't add click event handler to [div first item]. 
+            if (y === 1) return;
+            items[y].addEventListener("click", function(event) {
                 // alert(y);
+                var cls = this.getAttribute('class');
+                var tag_name = this.tagName;
+
                 if (y == 2) {
                     // stopPropagation will stop the event propagate to its parents in bubling mode.
                     event.stopPropagation();
@@ -56,12 +66,11 @@
                     // Prevent default stops the default action of an element, but doesn't stop the event from propagating
                     event.preventDefault();
                 }
-                console.log(items[y], event);
+                console.log(tag_name + " [" + cls + "]");
             }, false);
         })(i);
     }
-
-</script>
-
+    </script>
 </body>
+
 </html>
