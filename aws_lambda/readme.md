@@ -1,9 +1,13 @@
 HTTP APIS for cen646
 =====
 __Add new order__
+
 __url__ : https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders
+
 __method__ : put
+
 __example__:
+```curl
 curl -v -X PUT \
   'https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders' \
   -H 'content-type: application/json' \
@@ -28,11 +32,16 @@ __respsonse__:
    "humidity" : "null",
    "credit_card_info" : "0000222233334444"
 }
+```
 
 __update an order__
+
 __url__ : https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/{order_id}
+
 __method__ : post
+
 __example__:
+```curl
 curl -v -X POST \
   'https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/222_6953437082085556' \
   -H 'content-type: application/json' \
@@ -55,10 +64,15 @@ __respsonse__:
    "date" : "1512202059387",
    "credit_card_info" : "0000222233334444"
 }
+```
 __get an order by order_id__
+
 __url__ : https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/{order_id}
+
 __method__ : get
+
 __example__:
+```curl
 curl -v -X GET 'https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/222_6953437082085556' | json_pp
 __respsonse__:
 {
@@ -73,9 +87,15 @@ __respsonse__:
    "telephone_number" : "740-234-1233",
    "location" : "33,22"
 }
+```
 __get all the new orders__
+
 __url__ : https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/new
+
 __method__ : get
+
 __example__:
+```curl
 curl -v -X GET 'https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/new' | json_pp
+```
 
