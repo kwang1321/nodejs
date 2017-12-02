@@ -13,12 +13,13 @@ function generateRowId() {
 }
 
 exports.handler = (event, context, callback) => {
-    // TODO implement
-    // callback(null, 'Hello from Lambda');
     console.log(JSON.stringify(event, null, '  '));
-    dynamodb.listTables(function(err, data) {
-        console.log(JSON.stringify(data, null, '  '));
-    });
+    // dynamodb.listTables(function(err, data) {
+    //     console.log(JSON.stringify(data, null, '  '));
+    // });
+    if(!(event.customer_name && event.credit_card_info && event.shipping_address && event.telephone_number && event.product_number)) {
+        context.fail("request parameters error, please check your parameters");
+    }
     var tableName = "iot_order";
     var datetime = new Date().getTime().toString();
     var order_id = event.product_number + "_" + generateRowId();
@@ -35,21 +36,25 @@ exports.handler = (event, context, callback) => {
         "temperature": { "S": "null" },
         "humidity": { "S": "null" }
     };
+    var return_item = {};
+    for (let key in item) {
+        let values = item[key];
+        console.log(values);
+        return_item[key] = values["S"];
+    }
     try {
         dynamodb.putItem({
             "TableName": tableName,
-            "Item": item
+            "Item": item,
+            // ReturnConsumedCapacity: "TOTAL", 
+            "ReturnValues": "ALL_OLD"
         }, function(err, data) {
             if (err) {
                 console.log("error is " + err);
                 context.done('error', 'putting item into dynamodb failed: ' + err);
             } else {
                 console.log('great success: ' + JSON.stringify(data, null, '  '));
-                // context.done('K THX BY');
-                // return item;
-                callback(null, {
-                    "result": item
-                })
+                callback(null, return_item)
             }
         });
     } catch (error) {
@@ -57,16 +62,3 @@ exports.handler = (event, context, callback) => {
         context.fail("Caught: " + error);
     }
 };
-
-// create an IAM Lambda role with access to dynamodb
-// Launch Lambda in the same region as your dynamodb region
-// (here: us-east-1)
-// dynamodb table with hash key = user and range key = datetime
-
-
-
-// sample event
-//{
-//  "user": "bart",
-//  "msg": "hey otto man"
-//}

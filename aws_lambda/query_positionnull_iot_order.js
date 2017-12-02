@@ -4,7 +4,7 @@ var AWS = require('aws-sdk');
 exports.handler = (event, context, callback) => {
     // TODO implement
     // callback(null, 'Hello from Lambda');
-    console.log(JSON.stringify(event, null, '  '));
+    // console.log(JSON.stringify(event, null, '  '));
     
     var tableName = "iot_order";
     var docClient = new AWS.DynamoDB.DocumentClient();
@@ -33,15 +33,3 @@ exports.handler = (event, context, callback) => {
     });
 };
 
-// create an IAM Lambda role with access to dynamodb
-// Launch Lambda in the same region as your dynamodb region
-// (here: us-east-1)
-// dynamodb table with hash key = user and range key = datetime
-
-
-
-// sample event
-//{
-//  "user": "bart",
-//  "msg": "hey otto man"
-//}

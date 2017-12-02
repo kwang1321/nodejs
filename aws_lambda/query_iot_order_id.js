@@ -27,10 +27,13 @@ exports.handler = (event, context, callback) => {
             console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
         } else {
             console.log("Query succeeded." + data.Items.length);
-            data.Items.forEach(function(item) {
-                console.log(item);
-            });
-            callback(null, data.Items);
+            // data.Items.forEach(function(item) {
+            //     console.log(item);
+            // });
+            if (data.Items.length === 1)
+                callback(null, data.Items[0]);
+            else
+                callback(null, {});
         }
     });
 };
