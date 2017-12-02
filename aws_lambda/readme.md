@@ -1,6 +1,6 @@
 HTTP APIS for cen646
 =====
-__Add new order__
+### 1. __Add new order__
 
 __url__ : https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders
 
@@ -34,7 +34,7 @@ __respsonse__:
 }
 ```
 
-__update an order__
+### 2. __update an order__
 
 __url__ : https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/{order_id}
 
@@ -65,7 +65,7 @@ __respsonse__:
    "credit_card_info" : "0000222233334444"
 }
 ```
-__get an order by order_id__
+### 3. __get an order by order_id__
 
 __url__ : https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/{order_id}
 
@@ -88,7 +88,7 @@ __respsonse__:
    "location" : "33,22"
 }
 ```
-__get all the new orders__
+### 4. __get all the new orders__
 
 __url__ : https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/new
 
