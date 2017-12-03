@@ -9,16 +9,25 @@
 
     button.alert {
         color: blue;
+        padding: 5px 10px;
+        margin-top: 10px;
     }
 
     div {
         background-color: green;
-        padding: 20px;
+        /*padding-top: 20px;*/
+        padding: 10px 20px;
+        /*padding: 20px;*/
+    }
+
+    div.second {
+        background-color: yellow;
     }
 
     input {
-        /*padding: 10px;*/
-        padding-top: 10px;
+        /*padding top,bottom, padding left,right*/
+        padding: 10px, 20px;
+        /*padding-top: 10px;*/
         /*margin: 20px;*/
     }
 
@@ -26,11 +35,18 @@
         font-family: "Times New Roman", "Georgia", "Serif";
         font-size: 18px;
     }
+
+    .evil {
+        color: yellow;
+    }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
     $(function() {
         // document.ready.
+        // 1. Extending Events to New Page Elements
+
+        // It is important to note that .on() can only create event listeners on elements that exist at the time you set up the listeners. Similar elements created after the event listeners are established will not automatically pick up event behaviors you've set up previously. For example:
         $('button').on('click', function(e) {
             console.log("A button with the alert class was clicked!");
         });
@@ -42,15 +58,83 @@
             event.stopPropagation();
             /* Act on the event */
             console.log("input is clicked or changed.");
-        });
-        // Setting Up Multiple Event Responses
+            // Tearing Down Event Listeners
+        }).on('click', can_be_teardown);
+        // 2. Setting Up Multiple Event Responses
+        // 3. Namespacing Events (you can unbind the events with same namespace)
         $('div').on('click', function(event) {
             console.log("p is clicked!");
-        }).on('mouseover',function(event) {
-            console.log("p is mouseovered!");
+        }).on('mouseover', function(event) {
+            // console.log("p is mouseovered!");
 
+        }).on('click.FirstNameSpace', function(event) {
+            event.preventDefault();
+            console.log("first namespace");
+            /* Act on the event */
+        }).on('click.SecondNameSpace', function(event) {
+            event.preventDefault();
+            console.log("second namespace");
+            $(this).off("click.FirstNameSpace");
+            // 4. Tearing Down Event Listeners
+            // 5. If you attached a named function to the event, then you can isolate the event tear down to just that named function by passing it as the second argument.
+            $('input').off('click', can_be_teardown);
+            /* Act on the event */
+        });
+
+        // 6.using event delegation to listen for events ocurring on its children.
+        $('div').on('click', 'label', function(event) {
+            event.preventDefault();
+            /* Act on the event */
+            console.log($(this).attr('for'));
+            console.log($(this).text("info2"));
+        });
+
+        // 7. test Many events and handlers
+        $("div.second").on({
+            'click': function(event) {
+                event.preventDefault();
+                /* Act on the event */
+                console.log("div second click");
+            },
+            mouseenter : function(event) {
+                /* Act on the event */
+                console.log("div second mouseenter");
+            },
+            mouseleave: function(e) {
+                console.log("div second mouseleave");
+                // body...
+            }
+        });
+
+        // 8. preventDefault()
+        // $("a").on('click', function(e) {
+        //     e.preventDefault();
+        //     /* Act on the event */
+        //     e.stopPropagation();
+        //     console.log(e.target === this);
+        //     $(this).addClass('evil');
+
+        //     // add
+        // });
+        // $("a.evil").on('click', function(event) {
+        //     event.preventDefault();
+        //     /* Act on the event */
+        //     $(this).css('background-color', 'blue');
+        // });
+        $("a").on('click', function(event) {
+            event.preventDefault();
+            /* Act on the event */
+            if ($(this).hasClass('evil')) {
+                $(this).removeClass('evil');
+            } else {
+                $(this).addClass('evil');
+            }
         });
     });
+
+    function can_be_teardown() {
+        console.log("this function can be teared down");
+    }
     </script>
 </head>
 
@@ -63,6 +147,8 @@
         <label for="txtInfo">info:</label>
         <input type="text" id="txtInfo">
     </div>
+    <div class="second">Many events and handlers</div>
+    <a href="https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/222_6953437082085556">Get One Order</a>
 </body>
 
 </html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Event Delegation</title>
+    </head>
+    <body>
+        <div>
+        	<ul id="list">
+        	    <li><a href="http://www.google.com">google</a> </li>
+        	    <li><a href="http://www.facebook.com">Facebook</a> </li>
+        	    <li><a href="twitter.com">Twitter</a></li>
+        	    <li><a href="http://weibo.com">Weibo</a> </li>
+        	</ul>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type ="text/javascript">
+        	// 1. without delegation.
+        	// $("#list a").on('click', function(event) {
+        	// 	event.preventDefault();
+        	// 	/* Act on the event */
+        	// 	console.log($(this).text());
+        	// });
+        	// 2. with delegation
+        	// $("#list").on('click', 'a[href^="http"]', function(event) {
+        	// 	// event.preventDefault();
+        	// 	console.log($(this).text());
+        	// 	$(this).attr('target', '_blank');
+        	// });
+        	$("#list").on('click', 'a', function(event) {
+        		// event.preventDefault();
+        		/* Act on the event */
+        		var jthis = $(this);
+    			console.log(jthis.text());
+    			console.log(this === event.target);
+        		if (jthis.is('[href^="http"]')) {
+        			jthis.attr('target', '_blank');
+        		} else {
+        			event.preventDefault();
+        			event.stopPropagation();
+        		}
+        	});
+
+
+        	// using above method, when you add anchor in ul. the event handler function won't be fired.
+        	// Direct events are only attached to elements at the time the .on() method is called. 
+        	// In this case, since our new anchor did not exist when .on() was called, it does not get the event handler.
+        	$("#list").append('<li><a href="http://www.itu.edu">ITU</a></li>');
+        </script>
+    </body>
+</html>

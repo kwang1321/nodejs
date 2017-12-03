@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Trigger Event</title>
+        <style type="text/css">
+        	p {
+        		padding: 10px 20px;
+        		background-color: blue;
+        		height: 20px;
+        	}
+        </style>
+    </head>
+    <body>
+    	<p></p>
+    	<div>
+    		<button>Using Trigger</button>
+    		<button>Not Using Trigger</button>
+    	</div>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    	<script type="text/javascript">
+    		let func = function(event) {
+    			// event.preventDefault();
+    			if (event) {
+    				console.log("this is an event");
+    				console.log(event);
+    			} else {
+    				console.log("not an event");
+    			}
+    			/* Act on the event */
+    		};
+
+    		$("div").on('click', 'button', function(event) {
+    			event.preventDefault();
+    			// console.log($(this).text().indexOf("Not"));
+    			if ($(this).text().indexOf("Not") >= 0) {
+    				func();
+    			} else {
+    				$("p").trigger('click')
+    			}
+
+    			/* Act on the event */
+    		});
+
+    		// $("p").on('click', "button", function (e) {
+    		// 	// body...
+    		// 	e.stopPropagation();
+    		// 	$("p").trigger('click');
+    		// });
+    		$("p").on('click', func);
+    	</script>
+    </body>
+</html>

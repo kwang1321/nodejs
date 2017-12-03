@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    .room {
+        text-align: center;
+    }
+
+    div {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin: 10px 20px;
+    }
+
+    .lightbulb {
+        width: 100px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .on {
+        background-color: red;
+    }
+
+    .off {
+        background-color: gray;
+    }
+
+    div.switch {
+        display: inline-block;
+        color: #444;
+        border: 1px solid #CCC;
+        background: #DDD;
+        box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        vertical-align: middle;
+        max-width: 100px;
+        padding: 5px;
+        text-align: center;
+    }
+
+    div:active {
+        color: red;
+        box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+    }
+    div.clapper {
+    	display: inline-block;
+    	background-color: gray;
+    	width: 50%;
+    	height: 30px;
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    	$(function () {
+    		// 1. traditional way. no custom events.
+    		// $("#kitchen").on('click', '.switch, .clapper', function(event) {
+    		// 	event.preventDefault();
+    		// 	/* Act on the event */
+    		// 	var light = $(".lightbulb");
+    		// 	if (light.is('.on')) {
+    		// 		light.removeClass('on').addClass('off');
+    		// 	} else {
+    		// 		light.removeClass('off').addClass('on');
+    		// 	}
+    		// });
+
+    		// 2. custom 3 events. light:on, light:off, light:toggle
+    		$(".lightbulb").on('light:toggle', function(event) {
+    			event.preventDefault();
+    			/* Act on the event */
+    			var light = $(this);
+    			if (light.is('.on')) {
+    				light.trigger('light:off');
+    			} else {
+    				light.trigger('light:on');
+    			}
+    		}).on('light:on', function(event) {
+    			event.preventDefault();
+    			/* Act on the event */
+    			var light = $(this);
+    			light.removeClass('off').addClass('on');
+    		}).on('light:off', function(event) {
+    			event.preventDefault();
+    			/* Act on the event */
+    			var light = $(this);
+    			light.removeClass('on').addClass('off');
+    		});
+
+    		$("#master_switch").click(function(event) {
+    			/* Act on the event */
+    			$(".lightbulb").trigger('light:toggle');
+    		});
+    		$(".switch, .clapper").on('click', function(event) {
+    			event.preventDefault();
+    			/* Act on the event */
+    			$(this).closest('.room').find('.lightbulb').trigger('light:toggle');
+    		});
+    	});
+    </script>
+</head>
+
+<body>
+    <div class="room" id="kitchen">
+        <div class="lightbulb on">light</div><br>
+        <div class="switch">switch 1</div>
+        <div class="switch">switch 2</div><br>
+        <div class="clapper"></div>
+    </div>
+    <div class="room" id="bedroom">
+        <div class="lightbulb on">light</div><br>
+        <div class="switch">switch 1</div>
+        <div class="switch">switch 2</div><br>
+        <div class="clapper"></div>
+    </div>
+    <button id='master_switch'>Master Switch</button>
+</body>
+
+</html>
