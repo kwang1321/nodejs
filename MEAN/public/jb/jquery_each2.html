@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>each demo</title>
+    <style type="text/css">
+    span {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    ul {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .example {
+        font-style: italic;
+    }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    To do list: <span>(click here to change)</span>
+    <ul>
+        <li>Eat</li>
+        <li>Sleep</li>
+        <li>Be merry</li>
+    </ul>
+    <p>
+    </p>
+    <p>
+    </p>
+    <script type="text/javascript">
+    $('span').click(function(event) {
+        /* Act on the event */
+        $('li').each(function(index, el) {
+            $(this).toggleClass('example');
+        });
+        $('<a href="http://www.itu.edu">ITU</a>').appendTo('p');
+        // $('p').append('ITU');
+        $('ul').append('<li>Appeciate</li>');
+    });
+    </script>
+</body>
+
+</html>

@@ -13,6 +13,9 @@
         	    <li><a href="http://weibo.com">Weibo</a> </li>
         	</ul>
         </div>
+        <div>
+            <button>Show Urls</button>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script type ="text/javascript">
         	// 1. without delegation.
@@ -40,6 +43,15 @@
         			event.stopPropagation();
         		}
         	});
+
+            $('button').click(function(event) {
+                /* Act on the event */
+                console.log("length " + $('a').length);
+                $('a').each(function(index, el) {
+                    var ele = $(this);
+                    console.log(ele.text() + " " + ele.attr('href'));
+                });
+            });
 
 
         	// using above method, when you add anchor in ul. the event handler function won't be fired.

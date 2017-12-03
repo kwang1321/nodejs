@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Selection</title>
+        <style type="text/css">
+            select {
+                padding: 10px 20px;
+                margin-top: 30px;
+                margin-left: 30px;
+            }
+
+            option {
+                color: blue;
+                font-size: 18px;
+            }
+
+            div {
+                background-color: gray;
+                margin: 20px;
+                color: red;
+                padding: 10px 30px
+            }
+        </style>
+    </head>
+    <body>
+        <select multiple="true">
+            <option>China</option>
+            <option>The USA</option>
+            <option>India</option>
+            <option>The British</option>
+        </select>
+        <div></div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $('select').change(function(event) {
+                /* Act on the event */
+                let res = "";
+                $('select :selected').each(function(index, el) {
+                    console.log($(this).text());
+                    res += $(this).text() + " ";
+                });
+                $('div').html(res);
+            });
+        </script>
+    </body>
+</html>

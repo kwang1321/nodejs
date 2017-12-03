@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Detach Remove</title>
+    <style type="text/css">
+    p {
+        background-color: blue;
+        padding: 10px 20px;
+        color: white;
+    }
+
+    p.off {
+        background-color: black;
+    }
+    </style>
+</head>
+
+<body>
+    <p>Hello</p>
+    how are
+    <p>you ?</p>
+    <button>Attach / Detach</button>
+    <button>Remove</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    var p;
+
+    $('p').click(function(event) {
+        /* Act on the event */
+        $(this).toggleClass('off');
+    });
+
+    $('button').click(function(event) {
+        /* Act on the event */
+        if ($(this).text().indexOf("Remove") < 0) {
+            if (p) {
+                p.appendTo('body');
+                p = null;
+            } else {
+                p = $('p').detach();
+            }
+        } else {
+            $('p').remove();
+        }
+
+    });
+    </script>
+</body>
+
+</html>
