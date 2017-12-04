@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Atrr vs Prop</title>
+    </head>
+    <body>
+        <input type="checkbox" name="checkbox1" checked="checked" />
+        <input type="checkbox" name="checkbox1" />
+        <input type="text" name="text1">
+        <div>
+            <input type="radio" name="radio1" checked="true" value="a">aa
+            <input type="radio" name="radio1" checked="false" value="b">bb
+            <input type="radio" name="radio1" checked="false" value="c">cc
+            <input type="radio" name="radio1" checked="false" value="d">dd
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $('input[name="checkbox1"]').each(function(index, el) {
+                console.log($(this).attr('checked'));
+                // is(:checked) is equal to prop
+                console.log($(this).prop('checked'));
+                console.log($(this).is(':checked'));
+            });
+            $('input[name="checkbox1"]').change(function(event) {
+                
+                var jthis = $(this);
+                console.log(jthis.attr('checked'));
+                console.log(jthis.attr('name'));
+                console.log(jthis.prop('checked'));
+                console.log(jthis.prop('name'));
+            });
+
+            let cnt = 0;
+            $('input[type="text"]').change(function(event) {
+                /* Act on the event */
+                console.log($('input[type="radio"]:checked').val());
+                console.log($(this).prop('value'));
+                console.log($(this).attr('value'));
+                console.log($('input[type=radio]:checked').val());
+                // var ele = $('input[type="radio"]').get(cnt++);
+                // $(ele).prop('checked', 'true');
+                // cnt %= 4;
+            });
+
+            $('input[type=radio]').change(function(event) {
+                /* Act on the event */
+                console.log($(this).prop('checked'));
+                console.log($(this).val());
+            });
+        </script>
+    </body>
+</html>

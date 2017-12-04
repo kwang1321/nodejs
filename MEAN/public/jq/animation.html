@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            div {
+                border: 1px solid green;
+                width: 100px;
+                height: 100px;
+                background-color: #bca;
+            }
+        </style>
+    </head>
+    <body>
+        <div>Hello Animation</div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $("div").on('click', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+                $(this).animate(
+                {
+                    width: "80%",
+                    height: "300px",
+                    fontSize: "3em",
+                    borderWidth: "10px"
+                },
+                {
+                    duration : 2000,
+                    complete : function() {
+                        console.log("animation completed!");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

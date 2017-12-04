@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="doctype">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>No Conflict</title>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    var $ = { "a": 3, "b": 6 };
+    console.log($);
+    var jq = jQuery.noConflict();
+    console.log(jq);
+    console.log(jQuery === jq);
+    console.log($);
+    // 2. we can use ready method to solve the problem.
+    jQuery(document).ready(function($) {
+        // here, $ is jQuery
+        console.log("after loading : " + (jQuery === $)); // true;
+    });
+
+    // 3. in this scope, we can easily to know what the $ is.
+    (function($) {
+        console.log($ === jQuery); // true
+        $("head meta").each(function(index, el) {
+            if ($(this).attr('name')) {
+                console.log($(this).attr('name'));
+            }
+        });
+    })(jQuery);
+    </script>
+</body>
+
+</html>
