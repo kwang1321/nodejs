@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ajax to Aws api exapmple</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function($) {
+        // body...
+        $.get("https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/new", function(data) {
+            // $(".result").html(data);
+            // alert("Load was performed.");
+            console.log(data);
+        });
+        // 222_6953376836121273
+        $.get("https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/222_6953376836121273", function(data) {
+            // $(".result").html(data);
+            // alert("Load was performed.");
+            console.log(data);
+            for (var key in data) {
+                $('#display').append('<b>' + key + '</b> : ' + data[key]);
+                $('#display').append('<br>');
+            }
+        });
+    });
+
+    // $.ajax({
+    //     url: "https://kgng8eutc9.execute-api.us-west-2.amazonaws.com/orders/new",
+    //     type: 'GET',
+    //     crossDomain: true,
+    //     // data: JSON.stringify({
+    //     //     url: $('#url').val()
+    //     // }),
+    //     // headers: {
+    //     //     "X-Api-Key": 'blablabla'
+    //     // },
+    //     // dataType: 'json',
+    //     contentType: "application/json",
+    //     success: function(data) {
+    //         console.log(data);
+    //     }
+    // });
+    </script>
+</head>
+
+<body>
+    <div id="display"></div>
+</body>
+
+</html>
